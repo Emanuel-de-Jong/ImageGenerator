@@ -38,14 +38,18 @@ genBtn.onclick = function(event) {
     imgPaths.push(getRandomPath(headPath + "/Nose", "Nose-"));
     if (pickChances["Facial Hair"] >= Math.random())
         imgPaths.push(getRandomPath(headPath + "/Facial Hair", "FacialHair-"));
+    if (pickChances["Partial Masks"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Partial Masks", "Mask-"));
     if (pickChances["Glasses"] >= Math.random())
         imgPaths.push(getRandomPath(headPath + "/Glasses", "Glasses-"));
     if (pickChances["Hair"] >= Math.random())
         imgPaths.push(getRandomPath(headPath + "/Hair", "Hair-"));
-    if (pickChances["Masks"] >= Math.random())
-        imgPaths.push(getRandomPath(headPath + "/Masks", "Mask-"));
+    if (pickChances["Full Masks"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Full Masks", "Mask-"));
     if (pickChances["Hats"] >= Math.random())
         imgPaths.push(getRandomPath(headPath + "/Hats", "Hat-"));
+    if (pickChances["Laser Eyes"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Laser Eyes", "Eyes-"));
         
     imgPaths.push(getRandomPath("Board behind Hands", "Board-"));
     imgPaths.push(getRandomPath("Hands", "Hand-"));
