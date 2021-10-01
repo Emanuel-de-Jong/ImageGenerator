@@ -2,7 +2,15 @@ let genBtn = document.getElementById("gen-btn");
 let genCanvas = document.getElementById("gen-canvas");
 let genCanvasCtx;
 
-genBtn.addEventListener("click", (event) => {
+
+function initGenCanvas() {
+    genCanvasCtx = genCanvas.getContext("2d");
+    genCanvas.width = 425;
+    genCanvas.height = 500;
+}
+
+
+genBtn.onclick = function(event) {
     genCanvasCtx.clearRect(0, 0, genCanvas.width, genCanvas.height);
 
     let bodyPath = "Body " + getRandomInt(dirCounts["Body"]);
@@ -39,10 +47,24 @@ genBtn.addEventListener("click", (event) => {
             imgs.forEach((img) => {
                 genCanvasCtx.drawImage(img, 0, 0, genCanvas.width, genCanvas.height);
             });
-        }).catch((err) => {
+        })
+        .catch((err) => {
             console.error(err);
         });
-});
+}
+
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max) + 1;
+}
+
+
+function getRandomPath(parentPath, nameStart, fileType="png") {
+    let imgNum = getRandomInt(imgCounts[parentPath]);
+    let imgPath = `imgs/${parentPath}/${nameStart}${("000"+imgNum).substr(-3)}.${fileType}`;
+    return imgPath;
+}
+
 
 function loadImg(imgPath) {
     return new Promise((resolve, reject) => {
@@ -60,21 +82,6 @@ function loadImg(imgPath) {
     });
 }
 
-function getRandomPath(parentPath, nameStart, fileType="png") {
-    let imgNum = getRandomInt(imgCounts[parentPath]);
-    let imgPath = `imgs/${parentPath}/${nameStart}${("000"+imgNum).substr(-3)}.${fileType}`;
-    return imgPath;
-}
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max) + 1;
-}
-
-function initGenCanvas() {
-    genCanvasCtx = genCanvas.getContext("2d");
-    genCanvas.width = 425;
-    genCanvas.height = 500;
-}
 
 initGenCanvas();
 genBtn.click();
