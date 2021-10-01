@@ -1,4 +1,5 @@
 let genBtn = document.getElementById("gen-btn");
+let dlBtn = document.getElementById("dl-btn");
 let genCanvas = document.getElementById("gen-canvas");
 let genCanvasCtx;
 
@@ -88,6 +89,15 @@ function loadImg(imgPath) {
 
         img.src = imgPath;
     });
+}
+
+
+dlBtn.onclick = function(event) {
+    let link = document.createElement("a");
+    link.download = "Avatar.png";
+    link.href = genCanvas.toDataURL();
+    link.click();
+    link.delete;
 }
 
 

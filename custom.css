@@ -5,7 +5,8 @@
     text-align: center;
 }
 
-#gen-btn {
-    margin-top: 40px;
+#gen-btn,
+#dl-btn {
+    margin: 40px 10px 0 10px;
     font-size: 30px;
 }
