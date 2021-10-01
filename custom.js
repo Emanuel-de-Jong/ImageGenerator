@@ -1,8 +1,16 @@
+const dirCounts = {
+    "Body": 3,
+    "Head": 4,
+}
+
 const imgCounts = {
     "Backgrounds": 10,
-    "Eyebrows": 11,
-    "Eyes": 23,
-    "Facial Hair": 10
+    "Body 1/Body": 8,
+    "Body 1/Bottoms": 8,
+    "Body 2/Body": 8,
+    "Body 2/Bottoms": 7,
+    "Body 3/Body": 8,
+    "Body 3/Bottoms": 8,
 }
 
 let genBtn = document.getElementById("gen-btn");
@@ -12,11 +20,12 @@ let genCanvasCtx;
 genBtn.addEventListener("click", (event) => {
     genCanvasCtx.clearRect(0, 0, genCanvas.width, genCanvas.height);
 
+    let bodyPath = "Body " + getRandomInt(dirCounts["Body"]);
+
     let imgPaths = [
         getRandomPath("Backgrounds", "BG-", "jpg"),
-        getRandomPath("Eyebrows", "EyeBrows-"),
-        getRandomPath("Eyes", "Eyes-"),
-        getRandomPath("Facial Hair", "FacialHair-")
+        getRandomPath(bodyPath + "/Body", "Body-"),
+        getRandomPath(bodyPath + "/Bottoms", "Bottom-")
     ]
 
     Promise
