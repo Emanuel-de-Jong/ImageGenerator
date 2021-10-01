@@ -85,6 +85,47 @@ const imgCounts = {
 	"Head 4/Partial Masks": 12,
 }
 
+
+const excludeCategories = {
+	"Facial Hair": [
+		"Partial Masks",
+		"Full Masks",
+	],
+	"Partial Masks": [
+		"Facial Hair",
+		"Bubblegum",
+		"Full Masks",
+	],
+	"Glasses": [
+		"Full Masks",
+		"Laser Eyes",
+	],
+	"Hair": [
+		"Full Masks",
+	],
+	"Bubblegum": [
+		"Partial Masks",
+		"Full Masks",
+	],
+	"Full Masks": [
+		"Facial Hair",
+		"Partial Masks",
+		"Glasses",
+		"Hair",
+		"Bubblegum",
+		"Hats",
+		"Laser Eyes",
+	],
+	"Hats": [
+		"Full Masks",
+	],
+	"Laser Eyes": [
+		"Glasses",
+		"Full Masks",
+	],
+}
+
+
 // 0 = never, 1 = always
 const pickChances = {
     "Tattoos": 0.3,
@@ -102,22 +143,6 @@ const pickChances = {
     "Laser Eyes": 0.1,
 }
 
-const excludeCategories = {
-	"Full Masks": [
-		"Facial Hair",
-		"Partial Masks",
-		"Glasses",
-		"Hats",
-		"Laser Eyes",
-	],
-	"Partial Masks": [
-		"Facial Hair",
-		"Full Masks",
-	],
-	"Laser Eyes": [
-		""
-	]
-}
 
 const dirCounts = {
     "Body": 3,
