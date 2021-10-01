@@ -1,18 +1,3 @@
-const dirCounts = {
-    "Body": 3,
-    "Head": 4,
-}
-
-const imgCounts = {
-    "Backgrounds": 10,
-    "Body 1/Body": 8,
-    "Body 1/Bottoms": 8,
-    "Body 2/Body": 8,
-    "Body 2/Bottoms": 7,
-    "Body 3/Body": 8,
-    "Body 3/Bottoms": 8,
-}
-
 let genBtn = document.getElementById("gen-btn");
 let genCanvas = document.getElementById("gen-canvas");
 let genCanvasCtx;
@@ -21,11 +6,31 @@ genBtn.addEventListener("click", (event) => {
     genCanvasCtx.clearRect(0, 0, genCanvas.width, genCanvas.height);
 
     let bodyPath = "Body " + getRandomInt(dirCounts["Body"]);
+    let headPath = "Head " + getRandomInt(dirCounts["Head"]);
 
     let imgPaths = [
         getRandomPath("Backgrounds", "BG-", "jpg"),
+
+        getRandomPath(bodyPath + "/Bottoms", "Bottom-"),
         getRandomPath(bodyPath + "/Body", "Body-"),
-        getRandomPath(bodyPath + "/Bottoms", "Bottom-")
+        getRandomPath(bodyPath + "/Tattoos", ""),
+        getRandomPath(bodyPath + "/Tops", "Top-"),
+        getRandomPath(bodyPath + "/Chains", ""),
+        
+        getRandomPath(headPath + "/Head", "Head-"),
+        getRandomPath(headPath + "/Face Tats", "FTat-"),
+        getRandomPath(headPath + "/Eyebrows", "EyeBrows-"),
+        getRandomPath(headPath + "/Eyes", "Eyes-"),
+        getRandomPath(headPath + "/Mouth", "Mouth-"),
+        getRandomPath(headPath + "/Nose", "Nose-"),
+        getRandomPath(headPath + "/Facial Hair", "FacialHair-"),
+        getRandomPath(headPath + "/Glasses", "Glasses-"),
+        getRandomPath(headPath + "/Hair", "Hair-"),
+        getRandomPath(headPath + "/Masks", "Mask-"),
+        getRandomPath(headPath + "/Hats", "Hat-"),
+        
+        getRandomPath("Board behind Hands", "Board-"),
+        getRandomPath("Hands", "Hand-"),
     ]
 
     Promise
