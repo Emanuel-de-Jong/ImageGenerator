@@ -1,0 +1,11 @@
+.container {
+    margin: auto;
+    margin-top: 150px;
+    width: min-content;
+    text-align: center;
+}
+
+#gen-btn {
+    margin-top: 40px;
+    font-size: 30px;
+}
