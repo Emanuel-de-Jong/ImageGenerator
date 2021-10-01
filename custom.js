@@ -16,30 +16,38 @@ genBtn.onclick = function(event) {
     let bodyPath = "Body " + getRandomInt(dirCounts["Body"]);
     let headPath = "Head " + getRandomInt(dirCounts["Head"]);
 
-    let imgPaths = [
-        getRandomPath("Backgrounds", "BG-", "jpg"),
+    let imgPaths = [];
+    imgPaths.push(getRandomPath("Backgrounds", "BG-", "jpg"));
 
-        getRandomPath(bodyPath + "/Bottoms", "Bottom-"),
-        getRandomPath(bodyPath + "/Body", "Body-"),
-        getRandomPath(bodyPath + "/Tattoos", ""),
-        getRandomPath(bodyPath + "/Tops", "Top-"),
-        getRandomPath(bodyPath + "/Chains", ""),
+    imgPaths.push(getRandomPath(bodyPath + "/Bottoms", "Bottom-"));
+    imgPaths.push(getRandomPath(bodyPath + "/Body", "Body-"));
+    if (pickChances["Tattoos"] >= Math.random())
+        imgPaths.push(getRandomPath(bodyPath + "/Tattoos", ""));
+    if (pickChances["Tops"] >= Math.random())
+        imgPaths.push(getRandomPath(bodyPath + "/Tops", "Top-"));
+    if (pickChances["Chains"] >= Math.random())
+        imgPaths.push(getRandomPath(bodyPath + "/Chains", ""));
         
-        getRandomPath(headPath + "/Head", "Head-"),
-        getRandomPath(headPath + "/Face Tats", "FTat-"),
-        getRandomPath(headPath + "/Eyebrows", "EyeBrows-"),
-        getRandomPath(headPath + "/Eyes", "Eyes-"),
-        getRandomPath(headPath + "/Mouth", "Mouth-"),
-        getRandomPath(headPath + "/Nose", "Nose-"),
-        getRandomPath(headPath + "/Facial Hair", "FacialHair-"),
-        getRandomPath(headPath + "/Glasses", "Glasses-"),
-        getRandomPath(headPath + "/Hair", "Hair-"),
-        getRandomPath(headPath + "/Masks", "Mask-"),
-        getRandomPath(headPath + "/Hats", "Hat-"),
+    imgPaths.push(getRandomPath(headPath + "/Head", "Head-"));
+    if (pickChances["Face Tats"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Face Tats", "FTat-"));
+    imgPaths.push(getRandomPath(headPath + "/Eyebrows", "EyeBrows-"));
+    imgPaths.push(getRandomPath(headPath + "/Eyes", "Eyes-"));
+    imgPaths.push(getRandomPath(headPath + "/Mouth", "Mouth-"));
+    imgPaths.push(getRandomPath(headPath + "/Nose", "Nose-"));
+    if (pickChances["Facial Hair"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Facial Hair", "FacialHair-"));
+    if (pickChances["Glasses"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Glasses", "Glasses-"));
+    if (pickChances["Hair"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Hair", "Hair-"));
+    if (pickChances["Masks"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Masks", "Mask-"));
+    if (pickChances["Hats"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Hats", "Hat-"));
         
-        getRandomPath("Board behind Hands", "Board-"),
-        getRandomPath("Hands", "Hand-"),
-    ]
+    imgPaths.push(getRandomPath("Board behind Hands", "Board-"));
+    imgPaths.push(getRandomPath("Hands", "Hand-"));
 
     Promise
         .all(imgPaths.map(i => loadImg(i)))

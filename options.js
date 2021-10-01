@@ -70,6 +70,19 @@ const imgCounts = {
 	"Head 4/Nose": 10,
 }
 
+// 0 = never, 1 = always
+const pickChances = {
+    "Tattoos": 0.3,
+    "Tops": 0.3,
+    "Chains": 0.3,
+    "Face Tats": 0.2,
+    "Facial Hair": 0.5,
+    "Glasses": 0.3,
+    "Hair": 0.9,
+    "Masks": 0.1,
+    "Hats": 0.3,
+}
+
 const dirCounts = {
     "Body": 3,
     "Head": 4,
