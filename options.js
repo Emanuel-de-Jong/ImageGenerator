@@ -87,6 +87,12 @@ const imgCounts = {
 
 
 const excludeCategories = {
+	"Eyes": [
+		"Laser Eyes",
+	],
+	"Mouth": [
+		"Bubblegum",
+	],
 	"Facial Hair": [
 		"Partial Masks",
 		"Full Masks",
@@ -104,6 +110,7 @@ const excludeCategories = {
 		"Full Masks",
 	],
 	"Bubblegum": [
+		"Mouth",
 		"Partial Masks",
 		"Full Masks",
 	],
@@ -120,6 +127,7 @@ const excludeCategories = {
 		"Full Masks",
 	],
 	"Laser Eyes": [
+		"Eyes",
 		"Glasses",
 		"Full Masks",
 	],
