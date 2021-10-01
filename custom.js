@@ -44,6 +44,8 @@ genBtn.onclick = function(event) {
         imgPaths.push(getRandomPath(headPath + "/Glasses", "Glasses-"));
     if (pickChances["Hair"] >= Math.random())
         imgPaths.push(getRandomPath(headPath + "/Hair", "Hair-"));
+    if (pickChances["Bubblegum"] >= Math.random())
+        imgPaths.push(getRandomPath(headPath + "/Bubblegum", "Bubblegum-"));
     if (pickChances["Full Masks"] >= Math.random())
         imgPaths.push(getRandomPath(headPath + "/Full Masks", "Mask-"));
     if (pickChances["Hats"] >= Math.random())

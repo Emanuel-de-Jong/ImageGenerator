@@ -21,6 +21,7 @@ const imgCounts = {
 	"Body 3/Tattoos": 5,
 	"Body 3/Tops": 16,
 	
+	"Head 1/Bubblegum": 3,
 	"Head 1/Eyebrows": 11,
 	"Head 1/Eyes": 20,
 	"Head 1/Face Tats": 1,
@@ -31,10 +32,11 @@ const imgCounts = {
 	"Head 1/Hats": 13,
 	"Head 1/Head": 8,
 	"Head 1/Laser Eyes": 3,
-	"Head 1/Mouth": 13,
+	"Head 1/Mouth": 10,
 	"Head 1/Nose": 10,
 	"Head 1/Partial Masks": 12,
 	
+	"Head 2/Bubblegum": 3,
 	"Head 2/Eyebrows": 11,
 	"Head 2/Eyes": 20,
 	"Head 2/Face Tats": 1,
@@ -50,6 +52,7 @@ const imgCounts = {
 	"Head 2/Nose": 10,
 	"Head 2/Partial Masks": 12,
 	
+	"Head 3/Bubblegum": 3,
 	"Head 3/Eyebrows": 11,
 	"Head 3/Eyes": 20,
 	"Head 3/Face Tats": 1,
@@ -65,6 +68,7 @@ const imgCounts = {
 	"Head 3/Nose": 10,
 	"Head 3/Partial Masks": 12,
 	
+	"Head 4/Bubblegum": 3,
 	"Head 4/Eyebrows": 11,
 	"Head 4/Eyes": 20,
 	"Head 4/Face Tats": 1,
@@ -84,7 +88,7 @@ const imgCounts = {
 // 0 = never, 1 = always
 const pickChances = {
     "Tattoos": 0.3,
-    "Tops": 0.3,
+    "Tops": 0.8,
     "Chains": 0.3,
 
     "Face Tats": 0.2,
@@ -92,6 +96,7 @@ const pickChances = {
     "Partial Masks": 0.2,
     "Glasses": 0.3,
     "Hair": 0.9,
+    "Bubblegum": 0.1,
     "Full Masks": 0.1,
     "Hats": 0.3,
     "Laser Eyes": 0.1,
@@ -103,7 +108,15 @@ const excludeCategories = {
 		"Partial Masks",
 		"Glasses",
 		"Hats",
+		"Laser Eyes",
 	],
+	"Partial Masks": [
+		"Facial Hair",
+		"Full Masks",
+	],
+	"Laser Eyes": [
+		""
+	]
 }
 
 const dirCounts = {
