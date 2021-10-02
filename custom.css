@@ -1,12 +1,13 @@
 .container {
     margin: auto;
-    margin-top: 150px;
+    margin-top: 20px;
     width: min-content;
     text-align: center;
 }
 
 #gen-btn,
 #dl-btn {
-    margin: 40px 10px 0 10px;
+    margin: 10px;
+    margin-top: 40px;
     font-size: 30px;
 }

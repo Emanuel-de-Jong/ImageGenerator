@@ -20,15 +20,15 @@ String.prototype.hashCode = function() {
 
 function initGenCanvas() {
     // 17 : 20 ratio
-    // genCanvas.width = 850;
-    // genCanvas.height = 1000;
-    genCanvas.width = 425;
-    genCanvas.height = 500;
+    genCanvas.width = 850;
+    genCanvas.height = 1000;
+    // genCanvas.width = 425;
+    // genCanvas.height = 500;
 
     genCanvasCtx = genCanvas.getContext("2d");
     genCanvasCtx.textAlign = "center";
     genCanvasCtx.fillStyle = "white";
-    genCanvasCtx.font = "32px Monospace";
+    genCanvasCtx.font = (genCanvas.height/500 * 32) + "px Monospace";
 }
 
 
@@ -160,7 +160,7 @@ function imgsLoaded(imgs) {
     imgs.forEach((img) => {
         genCanvasCtx.drawImage(img, 0, 0, genCanvas.width, genCanvas.height);
         if (img.src.includes("Board-"))
-            genCanvasCtx.fillText("#" + avatarHash, 212, 399);
+            genCanvasCtx.fillText("#" + avatarHash, genCanvas.width/2, genCanvas.height/10*8);
     });
 }
 
