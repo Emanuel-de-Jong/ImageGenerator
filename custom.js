@@ -3,6 +3,7 @@ let dlBtn = document.getElementById("dl-btn");
 let genCanvas = document.getElementById("gen-canvas");
 // The ctx (context) has drawing functions for the canvas
 let genCanvasCtx;
+let avatarHash;
 let categoryVers = {};
 
 
@@ -13,7 +14,7 @@ String.prototype.hashCode = function() {
         hash += (hash << 10);
         hash ^= (hash >> 6);
     }
-    return (hash % 10000000).toString(16).padStart(6, "0");
+    return (hash % 10000000).toString(16).toUpperCase().padStart(6, "0");
 };
 
 
@@ -27,7 +28,7 @@ function initGenCanvas() {
     genCanvasCtx = genCanvas.getContext("2d");
     genCanvasCtx.textAlign = "center";
     genCanvasCtx.fillStyle = "white";
-    genCanvasCtx.font = "36px Monospace";
+    genCanvasCtx.font = "32px Monospace";
 }
 
 
@@ -61,16 +62,6 @@ function generateAvatar() {
         .catch((err) => {
             console.error(err);
         });
-}
-
-
-function imgsLoaded(imgs) {
-    let hash = Object.values(categoryVers).join("").hashCode();
-    imgs.forEach((img) => {
-        genCanvasCtx.drawImage(img, 0, 0, genCanvas.width, genCanvas.height);
-        if (img.src.includes("Board-"))
-            genCanvasCtx.fillText("#" + hash, 212, 400);
-    });
 }
 
 
@@ -161,11 +152,22 @@ function loadImg(imgPath) {
 }
 
 
+function imgsLoaded(imgs) {
+    avatarHash = Object.values(categoryVers).join("").hashCode();
+    
+    imgs.forEach((img) => {
+        genCanvasCtx.drawImage(img, 0, 0, genCanvas.width, genCanvas.height);
+        if (img.src.includes("Board-"))
+            genCanvasCtx.fillText("#" + avatarHash, 212, 399);
+    });
+}
+
+
 dlBtn.onclick = function(event) {
     // A HTML link needs to be created and clicked
     // This is a browser security limitation
     let link = document.createElement("a");
-    link.download = "Avatar.png";
+    link.download = avatarHash + ".png";
     link.href = genCanvas.toDataURL();
     link.click();
     link.delete;
