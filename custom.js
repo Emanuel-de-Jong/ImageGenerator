@@ -1,18 +1,30 @@
 let genBtn = document.getElementById("gen-btn");
 let dlBtn = document.getElementById("dl-btn");
 let genCanvas = document.getElementById("gen-canvas");
+// The ctx (context) has drawing functions for the canvas
 let genCanvasCtx;
 
 
 function initGenCanvas() {
     genCanvasCtx = genCanvas.getContext("2d");
+    // 17 : 20 ratio
     genCanvas.width = 425;
     genCanvas.height = 500;
 }
 
+
 genBtn.onclick = function(event) {
+    generateAvatar();
+}
+
+
+function generateAvatar() {
+    // Clear canvas every new generate
     genCanvasCtx.clearRect(0, 0, genCanvas.width, genCanvas.height);
 
+    // Some img categories don't go together
+    // Loop through conflicting categories from lowest to highest spawn chance
+    // If a conflicting category was already picked, skip the current one
     let imgPicks = []
     for (const [key, val] of Object.entries(pickChances)) {
         const exclude = excludeCategories[key].some(e => imgPicks.includes(e));
@@ -20,9 +32,29 @@ genBtn.onclick = function(event) {
             imgPicks.push(key);
     }
 
+    let imgPaths = pickImgPaths(imgPicks);
+
+    // Load images asynchronously for speed and to draw them in order
+    Promise
+        .all(imgPaths.map(i => loadImg(i)))
+        .then((imgs) => {
+            imgs.forEach((img) => {
+                genCanvasCtx.drawImage(img, 0, 0, genCanvas.width, genCanvas.height);
+            });
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+}
+
+
+// Make an array with random versions of all categories that aren't excluded (imgPicks)
+function pickImgPaths(imgPicks) {
+    // Randomly choose a body and head
     let bodyPath = "Body " + getRandomInt(dirCounts["Body"]);
     let headPath = "Head " + getRandomInt(dirCounts["Head"]);
 
+    // The order of pushing is also the order of drawing
     let imgPaths = [];
     imgPaths.push(getRandomPath("Backgrounds", "BG-", "jpg"));
 
@@ -64,24 +96,17 @@ genBtn.onclick = function(event) {
     imgPaths.push(getRandomPath("Board behind Hands", "Board-"));
     imgPaths.push(getRandomPath("Hands", "Hand-"));
 
-    Promise
-        .all(imgPaths.map(i => loadImg(i)))
-        .then((imgs) => {
-            imgs.forEach((img) => {
-                genCanvasCtx.drawImage(img, 0, 0, genCanvas.width, genCanvas.height);
-            });
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+    return imgPaths;
 }
 
 
+// Get a random int between 1 and max (inclusive)
 function getRandomInt(max) {
     return Math.floor(Math.random() * max) + 1;
 }
 
 
+// Get a random path of the given category
 function getRandomPath(parentPath, nameStart, fileType="png") {
     let imgNum = getRandomInt(imgCounts[parentPath]);
     let imgPath = `imgs/${parentPath}/${nameStart}${("000"+imgNum).substr(-3)}.${fileType}`;
@@ -89,6 +114,8 @@ function getRandomPath(parentPath, nameStart, fileType="png") {
 }
 
 
+// Make a HTML img object with imgPath as the src
+// Returns a Promise for asynchronous loading of multiple images
 function loadImg(imgPath) {
     return new Promise((resolve, reject) => {
         let img = new Image();
@@ -107,6 +134,8 @@ function loadImg(imgPath) {
 
 
 dlBtn.onclick = function(event) {
+    // A HTML link needs to be created and clicked
+    // This is a browser security limitation
     let link = document.createElement("a");
     link.download = "Avatar.png";
     link.href = genCanvas.toDataURL();
@@ -115,5 +144,6 @@ dlBtn.onclick = function(event) {
 }
 
 
+// Page initialization
 initGenCanvas();
-genBtn.click();
+generateAvatar();

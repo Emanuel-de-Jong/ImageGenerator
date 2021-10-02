@@ -1,3 +1,7 @@
+// The amount of images in each folder
+// The images are saved server side but the code is executed client side
+// We can't search through the image paths so we need to "know" each path
+// If we know the parent dirs and the filename structure, we can choose a number =< these to get the exact path
 const imgCounts = {
 	"Backgrounds": 10,
 	"Board behind Hands": 1,
@@ -86,6 +90,7 @@ const imgCounts = {
 }
 
 
+// Categories to ignore on key category pick
 const excludeCategories = {
 	"Tattoos": [],
 	"Tops": [],
