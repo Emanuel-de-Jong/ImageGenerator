@@ -3,17 +3,31 @@ let dlBtn = document.getElementById("dl-btn");
 let genCanvas = document.getElementById("gen-canvas");
 // The ctx (context) has drawing functions for the canvas
 let genCanvasCtx;
-
 let categoryVers = {};
 
 
+String.prototype.hashCode = function() {
+    let hash = 0;
+    for (i = 0; i < this.length; i++) {
+        hash += this.charCodeAt(i);
+        hash += (hash << 10);
+        hash ^= (hash >> 6);
+    }
+    return (hash % 10000000).toString(16).padStart(6, "0");
+};
+
+
 function initGenCanvas() {
-    genCanvasCtx = genCanvas.getContext("2d");
     // 17 : 20 ratio
     // genCanvas.width = 850;
     // genCanvas.height = 1000;
     genCanvas.width = 425;
     genCanvas.height = 500;
+
+    genCanvasCtx = genCanvas.getContext("2d");
+    genCanvasCtx.textAlign = "center";
+    genCanvasCtx.fillStyle = "white";
+    genCanvasCtx.font = "36px Monospace";
 }
 
 
@@ -25,9 +39,6 @@ genBtn.onclick = function(event) {
 function generateAvatar() {
     // Clear canvas every new generate
     genCanvasCtx.clearRect(0, 0, genCanvas.width, genCanvas.height);
-    genCanvasCtx.font = "42px Monospace";
-    genCanvasCtx.textAlign = "center";
-    genCanvasCtx.fillStyle = "white";
 
     allCategories.forEach((category) => categoryVers[category] = "000");
 
@@ -46,16 +57,20 @@ function generateAvatar() {
     // Load images asynchronously for speed and to draw them in order
     Promise
         .all(imgPaths.map(i => loadImg(i)))
-        .then((imgs) => {
-            imgs.forEach((img) => {
-                genCanvasCtx.drawImage(img, 0, 0, genCanvas.width, genCanvas.height);
-            });
-            genCanvasCtx.fillText("#95728", 212, 402);
-            console.log(categoryVers);
-        })
+        .then(imgsLoaded)
         .catch((err) => {
             console.error(err);
         });
+}
+
+
+function imgsLoaded(imgs) {
+    let hash = Object.values(categoryVers).join("").hashCode();
+    imgs.forEach((img) => {
+        genCanvasCtx.drawImage(img, 0, 0, genCanvas.width, genCanvas.height);
+        if (img.src.includes("Board-"))
+            genCanvasCtx.fillText("#" + hash, 212, 400);
+    });
 }
 
 

@@ -146,6 +146,7 @@ const excludeCategories = {
 	],
 	"Hair": [
 		"Full Masks",
+		"Hats",
 	],
 	"Bubblegum": [
 		"Mouth",
@@ -162,6 +163,7 @@ const excludeCategories = {
 		"Laser Eyes",
 	],
 	"Hats": [
+		"Hair",
 		"Full Masks",
 	],
 	"Laser Eyes": [
