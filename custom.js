@@ -83,6 +83,8 @@ function pickImgPaths(imgPicks) {
         imgPaths.push(getRandomPath(bodyPath, "Tops", "Top-"));
     if (imgPicks.includes("Chains"))
         imgPaths.push(getRandomPath(bodyPath, "Chains", ""));
+    if (imgPicks.includes("Wounds"))
+        imgPaths.push(getRandomPath(bodyPath, "Wounds", ""));
         
     imgPaths.push(getRandomPath(headPath, "Head", "Head-"));
     if (imgPicks.includes("Face Tats"))
