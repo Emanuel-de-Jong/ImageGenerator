@@ -10,9 +10,15 @@ function initGenCanvas() {
     genCanvas.height = 500;
 }
 
-
 genBtn.onclick = function(event) {
     genCanvasCtx.clearRect(0, 0, genCanvas.width, genCanvas.height);
+
+    let imgPicks = []
+    for (const [key, val] of Object.entries(pickChances)) {
+        const exclude = excludeCategories[key].some(e => imgPicks.includes(e));
+        if (!exclude && Math.random() <= val)
+            imgPicks.push(key);
+    }
 
     let bodyPath = "Body " + getRandomInt(dirCounts["Body"]);
     let headPath = "Head " + getRandomInt(dirCounts["Head"]);
@@ -20,37 +26,39 @@ genBtn.onclick = function(event) {
     let imgPaths = [];
     imgPaths.push(getRandomPath("Backgrounds", "BG-", "jpg"));
 
-    imgPaths.push(getRandomPath(bodyPath + "/Bottoms", "Bottom-"));
     imgPaths.push(getRandomPath(bodyPath + "/Body", "Body-"));
-    if (pickChances["Tattoos"] >= Math.random())
+    imgPaths.push(getRandomPath(bodyPath + "/Bottoms", "Bottom-"));
+    if (imgPicks.includes("Tattoos"))
         imgPaths.push(getRandomPath(bodyPath + "/Tattoos", ""));
-    if (pickChances["Tops"] >= Math.random())
+    if (imgPicks.includes("Tops"))
         imgPaths.push(getRandomPath(bodyPath + "/Tops", "Top-"));
-    if (pickChances["Chains"] >= Math.random())
+    if (imgPicks.includes("Chains"))
         imgPaths.push(getRandomPath(bodyPath + "/Chains", ""));
         
     imgPaths.push(getRandomPath(headPath + "/Head", "Head-"));
-    if (pickChances["Face Tats"] >= Math.random())
+    if (imgPicks.includes("Face Tats"))
         imgPaths.push(getRandomPath(headPath + "/Face Tats", "FTat-"));
     imgPaths.push(getRandomPath(headPath + "/Eyebrows", "EyeBrows-"));
-    imgPaths.push(getRandomPath(headPath + "/Eyes", "Eyes-"));
-    imgPaths.push(getRandomPath(headPath + "/Mouth", "Mouth-"));
+    if (imgPicks.includes("Eyes"))
+        imgPaths.push(getRandomPath(headPath + "/Eyes", "Eyes-"));
+    if (imgPicks.includes("Mouth"))
+        imgPaths.push(getRandomPath(headPath + "/Mouth", "Mouth-"));
     imgPaths.push(getRandomPath(headPath + "/Nose", "Nose-"));
-    if (pickChances["Facial Hair"] >= Math.random())
+    if (imgPicks.includes("Facial Hair"))
         imgPaths.push(getRandomPath(headPath + "/Facial Hair", "FacialHair-"));
-    if (pickChances["Partial Masks"] >= Math.random())
+    if (imgPicks.includes("Partial Masks"))
         imgPaths.push(getRandomPath(headPath + "/Partial Masks", "Mask-"));
-    if (pickChances["Glasses"] >= Math.random())
+    if (imgPicks.includes("Glasses"))
         imgPaths.push(getRandomPath(headPath + "/Glasses", "Glasses-"));
-    if (pickChances["Hair"] >= Math.random())
+    if (imgPicks.includes("Hair"))
         imgPaths.push(getRandomPath(headPath + "/Hair", "Hair-"));
-    if (pickChances["Bubblegum"] >= Math.random())
+    if (imgPicks.includes("Bubblegum"))
         imgPaths.push(getRandomPath(headPath + "/Bubblegum", "Bubblegum-"));
-    if (pickChances["Full Masks"] >= Math.random())
+    if (imgPicks.includes("Full Masks"))
         imgPaths.push(getRandomPath(headPath + "/Full Masks", "Mask-"));
-    if (pickChances["Hats"] >= Math.random())
+    if (imgPicks.includes("Hats"))
         imgPaths.push(getRandomPath(headPath + "/Hats", "Hat-"));
-    if (pickChances["Laser Eyes"] >= Math.random())
+    if (imgPicks.includes("Laser Eyes"))
         imgPaths.push(getRandomPath(headPath + "/Laser Eyes", "Eyes-"));
         
     imgPaths.push(getRandomPath("Board behind Hands", "Board-"));

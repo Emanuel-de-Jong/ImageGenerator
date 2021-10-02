@@ -87,6 +87,10 @@ const imgCounts = {
 
 
 const excludeCategories = {
+	"Tattoos": [],
+	"Tops": [],
+	"Chains": [],
+	"Face Tats": [],
 	"Eyes": [
 		"Laser Eyes",
 	],
@@ -136,19 +140,20 @@ const excludeCategories = {
 
 // 0 = never, 1 = always
 const pickChances = {
-    "Tattoos": 0.3,
-    "Tops": 0.8,
-    "Chains": 0.3,
-
-    "Face Tats": 0.2,
-    "Facial Hair": 0.5,
-    "Partial Masks": 0.2,
-    "Glasses": 0.3,
-    "Hair": 0.9,
-    "Bubblegum": 0.1,
     "Full Masks": 0.1,
-    "Hats": 0.3,
+    "Bubblegum": 0.1,
     "Laser Eyes": 0.1,
+    "Face Tats": 0.2,
+    "Partial Masks": 0.2,
+    "Tattoos": 0.3,
+    "Glasses": 0.3,
+    "Hats": 0.3,
+    "Chains": 0.4,
+    "Facial Hair": 0.5,
+    "Tops": 0.8,
+    "Hair": 0.9,
+	"Eyes": 1,
+	"Mouth": 1,
 }
 
 
