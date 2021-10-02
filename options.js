@@ -87,7 +87,36 @@ const imgCounts = {
 	"Head 4/Mouth": 10,
 	"Head 4/Nose": 10,
 	"Head 4/Partial Masks": 12,
-}
+};
+
+
+const allCategories = [
+	"Backgrounds",
+
+	"Bottoms",
+	"Body",
+	"Tattoos",
+	"Tops",
+	"Chains",
+
+	"Head",
+	"Face Tats",
+	"Eyebrows",
+	"Eyes",
+	"Mouth",
+	"Nose",
+	"Facial Hair",
+	"Partial Masks",
+	"Glasses",
+	"Hair",
+	"Bubblegum",
+	"Full Masks",
+	"Hats",
+	"Laser Eyes",
+	
+	"Board behind Hands",
+	"Hands",
+];
 
 
 // Categories to ignore on key category pick
@@ -140,7 +169,7 @@ const excludeCategories = {
 		"Glasses",
 		"Full Masks",
 	],
-}
+};
 
 
 // 0 = never, 1 = always
@@ -159,10 +188,10 @@ const pickChances = {
     "Hair": 0.9,
 	"Eyes": 1,
 	"Mouth": 1,
-}
+};
 
 
 const dirCounts = {
     "Body": 3,
     "Head": 4,
-}
+};
